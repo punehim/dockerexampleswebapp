@@ -1,0 +1,97 @@
+New cloud instance vultr.com
+
+
+
+
+
+==================================================================================
+1 hour
+Salutation
+About me										
+Content											
+
+what is virtualisation?						
+				------ Virtualization is the process of creating a software-based, or virtual, representation of something, such as virtual applications, servers, storage and networks. 
+				
+				Example web server, legacy and mail server
+    Reduced capital and operating costs.
+    Minimized or eliminated downtime.
+    Increased IT productivity, efficiency, agility and responsiveness.
+    Faster provisioning of applications and resources.
+    Greater business continuity and disaster recovery.
+    Simplified data center management.
+    Availability of a true Software-Defined Data Center..
+. two different virtualization containera and VM's
+				------- A virtual machine is the emulated equivalent of a computer system that runs on top of another system with its on os and applications.
+What is container?	 operating system level virtualisation						5mt
+				------ shipping industry, ease of transportation 
+				------- software containers packageour applications with dependencies and confgtns so tat we can run our appltns in any computing environmenst
+				------- why we need to package it? packkage irrespective of environment it doesnt workin my system , reliability , isolation,It as code
+				 is solved, develop ather than how to run an appliactauipom.
+Vms vs Containers -  boot time , size , overhead, gPG - GNU privacy gusrd 
+No:ofcontainers depend on the resources od the underlying host system
+What ids Docker ?
+						-----open source
+						------CE and EE available
+						------Pricing starts at $750 per node per year.
+						----- https://docs.docker.com/
+						-----lsb_release -a
+						----- using repository installation 
+						
+						docker --version
+						
+
+
+
+Docker architecture - The Docker client docker CLI talks to the Docker daemon dockerd, which does the heavy lifting of building, running, and distributing your Docker containers. 
+The Docker client and daemon can run on the same system, 
+or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.
+Docker Objects -  imagesRead only template with instructions forcreating docker container
+Containers
+docker run hello-world
+docker run -i -t ubuntu /bin/bash
+pull images , create contailer docker container create, read-write file system to container, network interface to connect to defaultetwok
+Services scale conatiners to multiple docker daemons
+
+Docker workflow
+
+Networks -> 
+docker network ls
+docker network rm my-net
+docker network create my-net
+docker network inspect bridge
+
+docker network create my-net
+   31  docker run --network="my-net" -d --name my-nginx nginx:alpine
+   32  docker ps
+   33  docker inspect my-nginx
+   34  docker exec -it my-nginx sh
+   35  docker network disonnect cranky_sammet
+   36  docker network bridge cranky_sammet
+   37  docker network disconnect bridge cranky_sammet
+   38  docker network connect my-net cranky_sammet
+   39  docker exec -it my-nginx sh
+   40  docker inspect cranky_sammet
+   41  docker inspect my-nginx
+   42  docker network inspect my-net
+   43  docker exec -it my-nginx sh
+   44  history
+   
+   
+   
+   docker run -d --network="my-net" --name testnginxing nginx:alpine      => correct
+
+docker create --name my-nginx \
+  --network my-net \
+  --publish 8080:80 \
+  nginx:latest
+  
+  docker network connect my-net my-nginx
+  
+  docker network disconnect my-net my-nginx
+  
+  docker container create --network host
+  
+  docker network create -d overlay my-overlay
+
+

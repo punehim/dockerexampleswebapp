@@ -1,0 +1,27 @@
+docker pull hello-world
+  227  docker create hello-world 
+  228  docker ps -a
+  229  docker start -a jovial_banzai
+  230  docker run ubuntu
+  231  docker run -d ubuntu sleep 20
+  232  docker ps
+  233  docker run -d --name my-ubuntu ubuntu sleep 20
+  234  docker ps
+  235  docker run -d --name my-nginx nginx
+  236  docker ps
+  237  docker run -d --name -p 8080:80 my-nginx1 nginx
+  238  docker run -d -p 8080:80 --name my-nginx1 nginx
+docker volume create my-vol
+  230  docker volume inspect my-vol
+  231  docker run --name my-jenkins1 -p 8085:8080 -p 50008:50000 -v my-vol:/var/jenkins_home jenkins 
+  232  docker run --name my-jenkins2 -p 8086:8080 -p 50006:50000 -v my-vol:/var/jenkins_home jenkins 
+  233  history
+docker network create my-net
+  245  docker network ls
+  246  docker run -d --network="my-net" --name my-nginx nginx:alpine
+  247  docker inspect 93
+  248  docker run -d --network="my-net" --name new-nginx nginx:alpine
+  249  docker inspect 21
+  250  docker network inspect my-net
+  251  docker ps
+  252  docker exec -it my-nginx sh
