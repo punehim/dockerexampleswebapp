@@ -1,55 +1,25 @@
-version: "3"
+redis:
+  image: redis
 
-services:
-  vote:
-    build: ./vote
-    command: python app.py
-    volumes:
-     - ./vote:/app
-    ports:
-      - "5000:80"
-    networks:
-      - front-tier
-      - back-tier
+db:  
+  image: postgres
 
-  result:
-    build: ./result
-    command: nodemon server.js
-    volumes:
-      - ./result:/app
-    ports:
-      - "5001:80"
-      - "5858:5858"
-    networks:
-      - front-tier
-      - back-tier
+vote:
+  image: voting-app
+  ports:
+          - 5000:80
+  links:
+    - redis           
+    
+worker:            
+  image: worker
+  links:
+          - db
+          - redis      
 
-  worker:
-    build:
-      context: ./worker
-    depends_on:
-      - "redis"
-    networks:
-      - back-tier
-
-  redis:
-    image: redis:alpine
-    container_name: redis
-    ports: ["6379"]
-    networks:
-      - back-tier
-
-  db:
-    image: postgres:9.4
-    container_name: db
-    volumes:
-      - "db-data:/var/lib/postgresql/data"
-    networks:
-      - back-tier
-
-volumes:
-  db-data:
-
-networks:
-  front-tier:
-  back-tier:
+result:
+  image: result-app
+  ports:
+          - 5001:80
+  links:
+    - db          
