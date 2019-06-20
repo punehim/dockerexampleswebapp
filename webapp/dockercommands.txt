@@ -25,3 +25,27 @@ docker network create my-net
   250  docker network inspect my-net
   251  docker ps
   252  docker exec -it my-nginx sh
+  cd example-voting-app/
+  579  ls
+  580  cd vote
+  581  ls
+  582  docker build . -t voting-app
+  583  cd ..
+  585  docker-compose up
+  docker swarm init
+  589  docker node ls
+  590  docker node promote docker_training19
+  591  docker node ls
+  592  docker swarm join-token
+  593  docker swarm join-token worker
+  594  docker node ls
+  595  docker node promote docker_training20
+  596  docker node ls
+  597  docker create service --replicas=3 nginx
+  598  docker service create --replicas=3 nginx
+  599  docker service ps
+  600  docker service ls
+  601  docker service ps ev
+  602  docker node ls
+  603  docker service ps ev
+
